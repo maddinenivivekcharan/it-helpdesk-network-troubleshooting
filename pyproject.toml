@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "helpdesk-lab"
+version = "1.0.0"
+description = "Safe local helpdesk and network troubleshooting training"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = []
+
+[project.scripts]
+helpdesk-lab = "helpdesk_lab.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,134 @@
+[
+  {
+    "title": "No internet access",
+    "symptoms": "Several sites or applications fail on a training device.",
+    "questions": "One device or many? Wired or wireless? When did it start? Does a local service work?",
+    "diagnostics": "Check cable/link and Settings network status. Inspect IP, default gateway and DNS locally. Test only an authorized gateway; compare a known application.",
+    "observations": "Disconnected link suggests a physical issue; a valid address alone does not prove connectivity. ICMP filtering can hide a working route.",
+    "causes": "Loose cable, Wi-Fi disconnection, DHCP failure, gateway outage or upstream disruption.",
+    "resolution": "With consent reconnect a loose lab cable or choose the approved Wi-Fi network. Retest the original application. Route shared outages to network support.",
+    "escalation": "Multiple devices affected, no valid lease, or gateway unavailable after basic checks: network team.",
+    "record": "Simulated scope, start time, link state, redacted findings, test outcome and escalation owner."
+  },
+  {
+    "title": "Connected to Wi-Fi but unable to open websites",
+    "symptoms": "Wi-Fi shows connected but browser requests fail.",
+    "questions": "All browsers and sites? Is a captive portal expected? Is a VPN required? Any certificate warning?",
+    "diagnostics": "Inspect SSID and signal without sharing credentials. Check clock, IP/gateway and DNS. Open only the approved portal or known test page; compare another authorized application.",
+    "observations": "Association to an access point does not imply internet access. Portal prompts, DNS errors and TLS warnings indicate different layers.",
+    "causes": "Captive portal, resolver issue, incorrect clock, approved proxy/VPN problem or upstream outage.",
+    "resolution": "Use the authorized captive portal. Correct clock only under policy. Ask network support to investigate proxy/VPN errors; never bypass certificate warnings.",
+    "escalation": "Unexpected SSID/portal or certificate warning: security; shared loss of service: networking.",
+    "record": "Simulated error wording, affected application types, signal quality, portal expectation and sanitized test results."
+  },
+  {
+    "title": "DNS resolution failures",
+    "symptoms": "Hostname lookup fails or an application reports name resolution errors.",
+    "questions": "One hostname or several? Other devices affected? Recent approved DNS or VPN change?",
+    "diagnostics": "Use the lab DNS check or nslookup with an approved hostname. Inspect configured resolver locally. Compare expected records with the service owner.",
+    "observations": "NXDOMAIN suggests no matching name; timeout suggests no timely answer. A successful lookup does not prove a web service works.",
+    "causes": "Typo, missing record, unreachable resolver, stale cache or split DNS requiring VPN.",
+    "resolution": "Correct a typed hostname. Follow approved VPN guidance. Cache flushing is a manual state change only when authorized and relevant; do not change DNS servers to bypass policy.",
+    "escalation": "Repeated failure across devices or incorrect authoritative records: DNS/service owner.",
+    "record": "Simulated error type, affected scope, expected versus observed response and owner; redact internal names."
+  },
+  {
+    "title": "Invalid or missing IP configuration",
+    "symptoms": "No IPv4 address, unexpected subnet or 169.254.x.x with no expected route.",
+    "questions": "DHCP expected? Is the link active? Is IPv6 working? Does another authorized device have the same problem?",
+    "diagnostics": "Inspect ipconfig /all locally. Check link, DHCP enabled state, lease and default gateway. Do not infer outage solely from a link-local address.",
+    "observations": "169.254.x.x can indicate an absent IPv4 DHCP lease; IPv6 may still provide connectivity. Missing gateway affects off-subnet routing.",
+    "causes": "DHCP unavailable, disconnected link, wrong VLAN or incorrect authorized static setup.",
+    "resolution": "Restore an approved physical connection with consent. Request network support. Release/renew interrupts connectivity and is never automated by this lab.",
+    "escalation": "DHCP/VLAN/static-address changes or repeated lease failures require network administrators.",
+    "record": "Simulated DHCP state, link state, whether a gateway exists and sanitized lease observations; no MAC inventory."
+  },
+  {
+    "title": "Slow Windows computer",
+    "symptoms": "Long sign-in, sluggish applications or sustained high resource usage.",
+    "questions": "When did it start? One application or all? Recent updates? Is work saved? Any heat or disk warnings?",
+    "diagnostics": "Observe Task Manager CPU, memory and disk over time. Check free storage and update status. Inspect only relevant Event Viewer summaries locally.",
+    "observations": "Short resource spikes may be normal. Sustained pressure and reproducible delays provide stronger evidence; do not guess malware from CPU use alone.",
+    "causes": "Resource pressure, pending updates, low storage, failing hardware or an application fault.",
+    "resolution": "Save work and close an unneeded application with consent. Plan an approved restart or update window. Never end unknown system/security processes or delete user files.",
+    "escalation": "Disk errors, repeated hangs, security alerts or persistent resource exhaustion: endpoint/hardware support.",
+    "record": "Simulated duration, resource pattern, application version and sanitized event ID; no process dumps."
+  },
+  {
+    "title": "Application crashes",
+    "symptoms": "An application closes unexpectedly or repeats an error.",
+    "questions": "Which version and action trigger it? Is unsaved work at risk? One device or several?",
+    "diagnostics": "Record sanitized error wording and time. Check Reliability Monitor or relevant Event Viewer entries. Reproduce only with dummy data after saving work.",
+    "observations": "Consistent triggers suggest an application-specific issue; failures across applications may indicate wider endpoint trouble.",
+    "causes": "Application defect, incompatible add-in, missing approved update or resource pressure.",
+    "resolution": "Save work and restart the application with consent. Use approved updates or repair procedures through the software owner; preserve user data.",
+    "escalation": "Repeated crash, data loss risk or repair requiring elevated rights: application/endpoint owner.",
+    "record": "Simulated version, reproduction steps, sanitized error and event ID, impact and safe workaround."
+  },
+  {
+    "title": "Printer connectivity issues",
+    "symptoms": "Jobs remain queued or an approved printer appears offline.",
+    "questions": "One user or all? Correct printer selected? Any display error? Can the printer produce its own test page?",
+    "diagnostics": "Inspect power, cable and printer status. View queue without reading document content. Compare an approved printer address and connectivity only if authorized.",
+    "observations": "A device self-test separates printing hardware from workstation queue issues. Ping success alone does not validate the print service.",
+    "causes": "Offline device, paper fault, wrong queue, driver issue or print server outage.",
+    "resolution": "Select the approved queue or replenish paper with consent. Owner approval is required before cancelling jobs; do not restart a shared spooler automatically.",
+    "escalation": "Shared queue failure, driver installation or persistent hardware fault: print support.",
+    "record": "Simulated queue state, display error, affected scope and test outcome; omit document titles and contents."
+  },
+  {
+    "title": "Outlook synchronization problems",
+    "symptoms": "Training mailbox appears stale or Outlook shows disconnected.",
+    "questions": "Is connectivity working? One mailbox or many? Does authorized web access work? What sanitized error is shown?",
+    "diagnostics": "Inspect Outlook connection/work-offline indicator and local clock. Compare approved web access. An authorized administrator may check Microsoft 365 service health.",
+    "observations": "Web access working with desktop failure narrows the issue toward the client; shared failures may indicate a service incident.",
+    "causes": "Offline mode, connectivity, expired authentication session, client issue or service outage.",
+    "resolution": "After saving drafts, restart Outlook with consent; follow official sign-in prompts privately. Do not delete profiles, mail caches or messages as a first step.",
+    "escalation": "Repeated authentication errors, shared outage or profile repair: Microsoft 365 support.",
+    "record": "Simulated client version, connection indicator, sanitized error and comparison outcome; never include email contents or tokens."
+  },
+  {
+    "title": "Microsoft Teams audio or login issues",
+    "symptoms": "Microphone not heard, wrong speaker selected or Teams sign-in fails.",
+    "questions": "Audio or identity problem? Headset connected? One meeting or all? Is the approved account selected?",
+    "diagnostics": "For audio inspect Teams device selection, mute state and Windows microphone permission; use a private test call when available. For login record sanitized error and check connectivity and clock.",
+    "observations": "Wrong output device differs from network call quality problems; identity policy errors require authorized identity support.",
+    "causes": "Incorrect audio device, denied microphone permission, connectivity or conditional access policy.",
+    "resolution": "Select the intended headset and adjust only the necessary approved permission with consent. Use official authentication privately; never request passwords or MFA codes.",
+    "escalation": "Persistent login/policy failure: identity team; repeated audio device fault: endpoint support.",
+    "record": "Simulated audio path, app version, permission state and sanitized error; no meeting recordings or participant data."
+  },
+  {
+    "title": "OneDrive synchronization problems",
+    "symptoms": "Sync icon shows paused, pending or a conflict.",
+    "questions": "Which sync indicator appears? Is storage full? Is the affected file open? Is connectivity available?",
+    "diagnostics": "Inspect the sync indicator and sanitized error. Check available local/cloud storage through authorized views without opening private documents.",
+    "observations": "Paused sync, capacity errors and file conflicts require different actions. A local file is not proof that a cloud copy is current.",
+    "causes": "Paused client, low storage, unsupported filename, open file or conflicting edits.",
+    "resolution": "Resume an intentionally paused client with consent. Preserve both conflict copies and ask the data owner to reconcile them. Do not delete local/cloud folders or reset/unlink automatically.",
+    "escalation": "Data integrity risk, permissions issue or persistent sync failure: storage/Microsoft 365 owner.",
+    "record": "Simulated sync status, error category and scope; omit filenames, personal paths and document contents."
+  },
+  {
+    "title": "Account lockout",
+    "symptoms": "A fictional account sign-in explicitly reports locked access.",
+    "questions": "What is the sanitized error? When did it start? Is there a recent password change or suspected unexpected activity? Never ask for the password.",
+    "diagnostics": "Stop repeated sign-in attempts. Follow approved identity verification and escalation policy; no directory queries are performed in this lab.",
+    "observations": "Lockout differs from disabled account, expired password and conditional access denial. Only authorized identity staff can confirm the actual account state.",
+    "causes": "Repeated failures, stale saved credentials or potentially malicious attempts; these remain hypotheses until investigated.",
+    "resolution": "Refer to the authorized identity team for verified recovery under policy. Never unlock or reset accounts in this lab or ask users to send MFA codes.",
+    "escalation": "Identity team for recovery; security team for suspicious attempts or unexpected MFA requests.",
+    "record": "Simulated start time, sanitized error, impact and escalation decision; no usernames, identity documents or credentials."
+  },
+  {
+    "title": "Suspicious email or phishing report",
+    "symptoms": "Unexpected request for credentials, payment or opening a suspicious attachment.",
+    "questions": "Was anything opened or entered? Is there an unexpected MFA prompt? Ask for a sanitized description, never passwords or message contents in this lab.",
+    "diagnostics": "Do not click links, open attachments, reply or contact the sender. Use the approved reporting mechanism; do not upload messages to public analysis sites.",
+    "observations": "Urgency, impersonation and unexpected links are warning signs, not proof by themselves. Trained security staff assess the original evidence in approved systems.",
+    "causes": "Potential phishing, impersonation or legitimate but unexpected correspondence.",
+    "resolution": "Report via the authorized security workflow. If interaction occurred, stop further activity and contact security immediately; follow their containment instructions.",
+    "escalation": "Immediate security escalation after credential entry, attachment execution, financial request or suspicious MFA.",
+    "record": "Simulated interaction type, time and escalation owner; preserve actual evidence only through approved security channels, never in this lab."
+  }
+]
